@@ -3,6 +3,7 @@ package com.cesarschool.projetos4.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cesarschool.projetos4.entity.User;
@@ -36,5 +37,15 @@ public class UserService {
         }
 
         return userRepository.save(user);
+    }
+
+    public User login(User user) {
+        Optional<User> userOptional = userRepository.findByEmail(user.getEmail());
+        if(!userOptional.isPresent()){
+            throw new RuntimeException("usuario não encontrado");
+        }else if(userOptional.get().getPassword().equals(user.getPassword()) && userOptional.get().getUsername().equals(user.getUsername())){
+            return userRepository.save(userOptional.get());
+        }
+        throw new RuntimeException("nome ou senha incorretos");
     }
 }

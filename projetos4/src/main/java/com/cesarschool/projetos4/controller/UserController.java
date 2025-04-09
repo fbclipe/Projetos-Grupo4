@@ -23,4 +23,14 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUsuario(@RequestBody User user) {
+        try {
+            User login = userService.login(user);
+            return ResponseEntity.ok(login);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }
