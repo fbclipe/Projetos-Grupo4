@@ -17,10 +17,24 @@ public class UserService {
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
+
     public Optional<User> getUserbyUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
     public Optional<User> getUserByEmail(String email) {
         return userRepository.findByEmail(email);
+    }
+
+    public User cadastrarUsuario(User user) {
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new RuntimeException("Email já cadastrado!");
+        }
+
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new RuntimeException("Username já cadastrado!");
+        }
+
+        return userRepository.save(user);
     }
 }
