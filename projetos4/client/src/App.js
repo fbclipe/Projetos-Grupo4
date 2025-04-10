@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import RegisterUser from './components/RegisterUser'; // Importe o componente de cadastro
 
 function App() {
   return (
@@ -18,6 +19,11 @@ function App() {
           Learn React
         </a>
       </header>
+
+      {/* Renderize aqui o componente RegisterUser */}
+      <main>
+        <RegisterUser />
+      </main>
     </div>
   );
 }
