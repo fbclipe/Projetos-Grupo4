@@ -43,7 +43,7 @@ public class Contribuinte extends User {
     @OneToMany(mappedBy = "contribuinte", cascade = CascadeType.ALL)
     private List<Doacao> doacoes = new ArrayList<>();
 
-    public Object getId() {
+    public Long getId() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
