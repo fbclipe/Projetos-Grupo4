@@ -16,30 +16,30 @@ public class ContribuinteController {
     private ContribuinteService contribuinteService;
 
     @PostMapping
-    public ResponseEntity<Contribuinte> criarContribuinte(@RequestBody Contribuinte contribuinte) {
+    public ResponseEntity<?> criarContribuinte(@RequestBody Contribuinte contribuinte) {
         Contribuinte novo = contribuinteService.salvarOuAtualizarContribuinte(contribuinte);
         return ResponseEntity.ok(novo);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contribuinte> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         Contribuinte contribuinte = contribuinteService.buscarPorId(id);
         return contribuinte != null ? ResponseEntity.ok(contribuinte) : ResponseEntity.notFound().build();
     }
 
     @GetMapping
-    public ResponseEntity<List<Contribuinte>> listarTodos() {
+    public ResponseEntity<List<?>> listarTodos() {
         return ResponseEntity.ok(contribuinteService.listarTodos());
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contribuinte> atualizarContribuinte(@PathVariable Long id, @RequestBody Contribuinte contribuinte) {
+    public ResponseEntity<?> atualizarContribuinte(@PathVariable Long id, @RequestBody Contribuinte contribuinte) {
         Contribuinte atualizado = contribuinteService.atualizarContribuinte(id, contribuinte);
         return atualizado != null ? ResponseEntity.ok(atualizado) : ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public ResponseEntity<?> deletar(@PathVariable Long id) {
         contribuinteService.deletarContribuinte(id);
         return ResponseEntity.noContent().build();
     }
