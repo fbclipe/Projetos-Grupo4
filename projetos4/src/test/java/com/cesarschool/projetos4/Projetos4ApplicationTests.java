@@ -1,0 +1,13 @@
+package com.cesarschool.projetos4;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class Projetos4ApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
