@@ -16,14 +16,19 @@ public class Doacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String tipo;
 
+    @Column(nullable = false)
     private String forma; // Ex: "Material", "Dinheiro", "Serviço"
 
+    @Column(nullable = false)
     private String descricao;
 
+    @Column(nullable = false)
     private Double valor; 
 
+    @Column(nullable = false)
     private LocalDate data = LocalDate.now();
 
     @ManyToOne
