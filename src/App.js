@@ -1,37 +1,48 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import EventosPage from './pages/EventosPage';
+import SobrePage from './pages/SobrePage';
+import ServicosPage from './pages/ServicosPage';
 import ContribuintesPage from './pages/ContribuintesPage';
-import ContribuintesLoginPage from './pages/ContribuintesLoginPage';
-import ContribuintesRegisterPage from './pages/ContribuintesRegisterPage';
-import EventosLoginPage from './pages/EventosLoginPage';
-import EventosRegisterPage from './pages/EventosRegisterPage';
-import './App.css';
+import EventosPage from './pages/EventosPage';
+import DepoimentosPage from './pages/DepoimentosPage';
+import ContatoPage from './pages/ContatoPage';
+import FaqPage from './pages/FaqPage';
 
-export default function App() {
+function App() {
   return (
     <Router>
-      <nav className="nav">
-        <NavLink to="/" className="nav-link" end>Home</NavLink>
-        <NavLink to="/eventos" className="nav-link">Eventos</NavLink>
-        <NavLink to="/contribuintes" className="nav-link">Contribuintes</NavLink>
-        <NavLink to="/eventos/login" className="nav-link">Login Eventos</NavLink>
-        <NavLink to="/eventos/register" className="nav-link">Cadastro Eventos</NavLink>
-        <NavLink to="/contribuintes/login" className="nav-link">Login Contribuintes</NavLink>
-        <NavLink to="/contribuintes/register" className="nav-link">Cadastro Contribuintes</NavLink>
-      </nav>
-      <div className="container">
+      <header className="header">
+        <nav>
+          <ul className="nav-list">
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/sobre">Sobre</Link></li>
+            <li><Link to="/servicos">Serviços</Link></li>
+            <li><Link to="/contribuintes">Contribuintes</Link></li>
+            <li><Link to="/eventos">Eventos</Link></li>
+            <li><Link to="/depoimentos">Depoimentos</Link></li>
+            <li><Link to="/contato">Contato</Link></li>
+            <li><Link to="/faq">FAQ</Link></li>
+          </ul>
+        </nav>
+      </header>
+      <main className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/eventos" element={<EventosPage />} />
+          <Route path="/sobre" element={<SobrePage />} />
+          <Route path="/servicos" element={<ServicosPage />} />
           <Route path="/contribuintes" element={<ContribuintesPage />} />
-          <Route path="/eventos/login" element={<EventosLoginPage />} />
-          <Route path="/eventos/register" element={<EventosRegisterPage />} />
-          <Route path="/contribuintes/login" element={<ContribuintesLoginPage />} />
-          <Route path="/contribuintes/register" element={<ContribuintesRegisterPage />} />
+          <Route path="/eventos" element={<EventosPage />} />
+          <Route path="/depoimentos" element={<DepoimentosPage />} />
+          <Route path="/contato" element={<ContatoPage />} />
+          <Route path="/faq" element={<FaqPage />} />
         </Routes>
-      </div>
+      </main>
+      <footer className="footer">
+        <p>&copy; {new Date().getFullYear()} Brasfi - Todos os direitos reservados.</p>
+      </footer>
     </Router>
-);
+  );
 }
+
+export default App;
