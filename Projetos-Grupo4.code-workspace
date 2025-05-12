@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"name": "Projetos-Grupo4",
+			"path": "."
+		},
+		{
+			"name": "projetos4",
+			"path": "../projetos4"
+		},
+		{
+			"name": "node_modules",
+			"path": "../node_modules"
+		},
+		{
+			"path": "../src"
+		}
+	],
+	"settings": {
+		"java.compile.nullAnalysis.mode": "disabled",
+		"java.configuration.updateBuildConfiguration": "interactive"
+	}
+}
