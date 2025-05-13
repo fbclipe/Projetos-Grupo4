@@ -1,0 +1,185 @@
+:root {
+  --color-white: #ffffff;
+  --color-primary: #27343F;
+  --color-secondary: #2E6A48;
+  --color-tertiary: #B58825;
+  --color-quaternary: #E3D237;
+  --font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: #f5f5f5;
+  color: var(--color-primary);
+}
+
+.header {
+  background-color: var(--color-primary);
+  padding: 1rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-list li a:hover {
+  text-decoration: underline;
+}
+
+.main-content {
+  padding: 2rem;
+}
+
+.footer {
+  background-color: var(--color-primary);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.faq-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: white;
+  border: 1px solid var(--color-tertiary);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.faq-item h3 {
+  margin-top: 0;
+  color: var(--color-secondary);
+}
+
+.faq-item p {
+  margin-bottom: 0.5rem;
+}
+
+
+/* Additional page-specific styles */
+.home-page, .about-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 8px;
+}
+.home-page h1 {
+  color: var(--color-secondary);
+}
+.about-page h1 {
+  color: var(--color-secondary);
+}
+.about-page p {
+  color: var(--color-primary);
+}
+.page-list {
+  list-style: none;
+  padding: 0;
+}
+.page-list li {
+  background-color: var(--color-tertiary);
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-radius: 4px;
+  color: white;
+}
+.page-list li:hover {
+  background-color: var(--color-quaternary);
+  cursor: pointer;
+}
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+
+/* New page specific styles */
+.servicos-page, .depoimentos-page, .contato-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.servicos-page h1, .depoimentos-page h1, .contato-page h1 {
+  color: var(--color-secondary);
+}
+.servicos-list, .depoimentos-list {
+  list-style: none;
+  padding: 0;
+}
+.servicos-list li, .depoimentos-list li {
+  margin: 0.5rem 0;
+  padding: 0.75rem;
+  border-left: 4px solid var(--color-tertiary);
+}
+.depoimento-card {
+  border: 1px solid var(--color-tertiary);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.contato-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+.contato-form input, .contato-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--color-secondary);
+  border-radius: 4px;
+}
+.contato-form button {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.contato-form button:hover {
+  background-color: var(--color-tertiary);
+}
+
+
+/* Interactive enhancements */
+button, .contato-form button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+button:hover, .contato-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+input, textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+input:focus, textarea:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(46,106,72,0.2);
+  outline: none;
+}
+
+.motion-list-item {
+  margin: 0.5rem 0;
+}
