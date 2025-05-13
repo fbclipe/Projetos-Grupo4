@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../Projetos-Grupo4-main (2)/.vscode"
+		},
+		{
+			"path": "../../Projetos-Grupo4-main (2)/node_modules"
+		},
+		{
+			"path": "../../Projetos-Grupo4-main (2)/Projetos-Grupo4"
+		},
+		{
+			"path": "../../Projetos-Grupo4-main (2)/Projetos-Grupo4-main"
+		},
+		{
+			"path": "../../Projetos-Grupo4-main (2)/projetos4"
+		},
+		{
+			"path": "../../Projetos-Grupo4-main (2)/public"
+		},
+		{
+			"path": "../../Projetos-Grupo4-main (2)/src"
+		}
+	],
+	"settings": {}
+}
