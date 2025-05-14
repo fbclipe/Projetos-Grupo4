@@ -8,6 +8,7 @@ import EventosPage from './pages/EventosPage';
 import DepoimentosPage from './pages/DepoimentosPage';
 import ContatoPage from './pages/ContatoPage';
 import FaqPage from './pages/FaqPage';
+import NoticiasPage from './pages/NoticiasPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <li><Link to="/eventos">Eventos</Link></li>
             <li><Link to="/depoimentos">Depoimentos</Link></li>
             <li><Link to="/contato">Contato</Link></li>
+            <li><Link to="/noticias">Notícias</Link></li>
             <li><Link to="/faq">FAQ</Link></li>
           </ul>
         </nav>
@@ -35,6 +37,7 @@ function App() {
           <Route path="/eventos" element={<EventosPage />} />
           <Route path="/depoimentos" element={<DepoimentosPage />} />
           <Route path="/contato" element={<ContatoPage />} />
+          <Route path="/noticias" element={<NoticiasPage />} />
           <Route path="/faq" element={<FaqPage />} />
         </Routes>
       </main>
