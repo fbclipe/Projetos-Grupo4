@@ -1,16 +1,17 @@
+import axios from 'axios';
+
+const API_BASE_URL = 'http://localhost:8080/noticias';
+
 export const getNoticias = async () => {
-  return [
-    {
-      id: 1,
-      titulo: 'Notícia Importante',
-      conteudo: 'Conteúdo da notícia importante.',
-      dataPublicacao: '2025-05-13T10:30:00',
-    },
-    {
-      id: 2,
-      titulo: 'Outra Notícia',
-      conteudo: 'Detalhes sobre outro acontecimento.',
-      dataPublicacao: '2025-05-10T15:45:00',
-    },
-  ];
+  const response = await axios.get(`${API_BASE_URL}/findall`);
+  return response.data;
+};
+
+export const criarNoticia = async (noticia) => {
+  const response = await axios.post(API_BASE_URL, noticia);
+  return response.data;
+};
+
+export const deletarNoticia = async (id) => {
+  await axios.delete(`${API_BASE_URL}/${id}`);
 };

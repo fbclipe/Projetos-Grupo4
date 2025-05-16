@@ -19,6 +19,7 @@ import com.cesarschool.projetos4.service.NoticiaService;
 
 @RestController
 @RequestMapping("/noticias")
+@CrossOrigin(origins = "http://localhost:3000")
 public class NoticiaController {
 
     @Autowired
