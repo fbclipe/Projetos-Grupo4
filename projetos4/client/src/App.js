@@ -9,6 +9,7 @@ import DepoimentosPage from './pages/DepoimentosPage';
 import ContatoPage from './pages/ContatoPage';
 import FaqPage from './pages/FaqPage';
 import NoticiasPage from './pages/NoticiasPage';
+import QuemSomosPage from './pages/QuemSomosPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <ul className="nav-list">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
+            <li><Link to="/quemsomos">Quem Somos</Link></li>
             <li><Link to="/servicos">Serviços</Link></li>
             <li><Link to="/contribuintes">Contribuintes</Link></li>
             <li><Link to="/eventos">Eventos</Link></li>
@@ -32,6 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/sobre" element={<SobrePage />} />
+          <Route path="/quemsomos" element={<QuemSomosPage />} />
           <Route path="/servicos" element={<ServicosPage />} />
           <Route path="/contribuintes" element={<ContribuintesPage />} />
           <Route path="/eventos" element={<EventosPage />} />

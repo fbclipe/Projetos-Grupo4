@@ -23,6 +23,7 @@ import com.cesarschool.projetos4.entity.QuemSomos;
 import com.cesarschool.projetos4.service.QuemSomosService;
 @RestController
 @RequestMapping("/quemsomos")
+@CrossOrigin(origins = "http://localhost:3000")
 public class QuemSomosController {
   
     @Autowired
