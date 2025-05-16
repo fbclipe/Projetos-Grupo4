@@ -28,9 +28,11 @@ public class FaqService {
     private FaqRepository faqRepository;
 
     // Buscar todas as perguntas
+    // depois – só perguntas de topo de FAQ
     public List<Faq> getAllPerguntas() {
-        return faqRepository.findByPerguntaIsNotNull();
+        return faqRepository.findByPerguntaPaiIsNull();
     }
+
 
     // Buscar todas as respostas de uma pergunta específica
     public List<Faq> getRespostasPorPergunta(Long perguntaId) {

@@ -1,26 +1,37 @@
-// src/services/faqService.js
-// Stubbed FAQ service with sample data for frontend development.
+const API_URL = "http://localhost:8080/faqs";
 
-const samplePerguntas = [
-  { id: 1, pergunta: 'O que é este sistema?' },
-  { id: 2, pergunta: 'Como posso adicionar uma pergunta?' },
-  { id: 3, pergunta: 'Quem desenvolveu este site?' },
-];
+export async function getPerguntas() {
+  const res = await fetch(`${API_URL}/perguntas`);
+  if (!res.ok) throw new Error("Erro ao buscar perguntas");
+  return await res.json();
+}
 
-const sampleRespostas = {
-  1: [{ id: 1, resposta: 'Este sistema é um exemplo de site corporativo com React e Spring Boot.' }],
-  2: [{ id: 2, resposta: 'Você não pode adicionar perguntas no momento, pois este é um exemplo.' }],
-  3: [{ id: 3, resposta: 'Este site foi desenvolvido por Israel Duclerc e equipe.' }],
-};
+export async function getRespostas(perguntaId) {
+  const res = await fetch(`${API_URL}/respostas/${perguntaId}`);
+  if (!res.ok) throw new Error("Erro ao buscar respostas");
+  return await res.json();
+}
 
-export const getPerguntas = async () => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(samplePerguntas), 500);
+export async function criarPergunta(perguntaTexto) {
+  const res = await fetch(`${API_URL}/pergunta`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ pergunta: perguntaTexto }),
   });
-};
+  if (!res.ok) throw new Error("Erro ao criar pergunta");
+  return await res.json();
+}
 
-export const getRespostas = async (perguntaId) => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(sampleRespostas[perguntaId] || []), 500);
+export async function criarResposta(perguntaId, respostaTexto) {
+  // Aqui você deve enviar o objeto Faq com a perguntaPai (perguntaId) para associar resposta
+  const res = await fetch(`${API_URL}/resposta`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      resposta: respostaTexto,
+      perguntaPai: { id: perguntaId }
+    }),
   });
-};
+  if (!res.ok) throw new Error("Erro ao criar resposta");
+  return await res.json();
+}

@@ -18,9 +18,9 @@ public interface FaqRepository extends JpaRepository<Faq, Long>  {
     // Buscar a pergunta original de uma resposta
     Faq findByIdAndPerguntaPaiIsNull(Long id);
 
+    List<Faq> findByPerguntaPaiIsNull();
+
     // Buscar todas as perguntas (respostas null)
     List<Faq> findByPerguntaIsNotNull();
-
-    // Buscar todas as respostas para uma pergunta específica
-    List<Faq> findByPerguntaAndPerguntaPaiIsNotNull(String pergunta);
 }
+
