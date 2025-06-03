@@ -10,16 +10,24 @@ import ContatoPage from './pages/ContatoPage';
 import FaqPage from './pages/FaqPage';
 import NoticiasPage from './pages/NoticiasPage';
 import QuemSomosPage from './pages/QuemSomosPage';
+import CadastroSucessoPage from './pages/CadastroSucessoPage';
+import brasfiLogo from './pages/brasfi-02.png';
+
 
 function App() {
   return (
     <Router>
       <header className="header">
-        <nav>
+        <nav className="nav-container">
+          <img
+              src={brasfiLogo}
+              alt="Logo da Brasfi"
+              style={{ maxWidth: '45px', height: 'auto', marginRight: '20px' }}
+          />
           <ul className="nav-list">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/sobre">Sobre</Link></li>
-            <li><Link to="/quemsomos">Quem Somos</Link></li>
+            <li><Link to="/quemsomos">Cadastro de interessado</Link></li>
             <li><Link to="/servicos">Serviços</Link></li>
             <li><Link to="/contribuintes">Contribuintes</Link></li>
             <li><Link to="/eventos">Eventos</Link></li>
@@ -29,7 +37,7 @@ function App() {
             <li><Link to="/faq">FAQ</Link></li>
           </ul>
         </nav>
-      </header>
+</header>
       <main className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -42,6 +50,7 @@ function App() {
           <Route path="/contato" element={<ContatoPage />} />
           <Route path="/noticias" element={<NoticiasPage />} />
           <Route path="/faq" element={<FaqPage />} />
+          <Route path="/sucesso" element={<CadastroSucessoPage />} />
         </Routes>
       </main>
       <footer className="footer">

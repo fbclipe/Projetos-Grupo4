@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const API_BASE_URL = 'http://localhost:8080/api/eventos';
+
 
 const EventosPage = () => {
   const [eventos, setEventos] = useState([]);
@@ -36,42 +38,45 @@ const EventosPage = () => {
   };
 
   // Envia novo evento para o backend
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const navigate = useNavigate();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    // Validação simples
-    if (
-      !form.titulo ||
-      !form.descricao ||
-      !form.data ||
-      !form.link ||
-      !form.parceiros
-    ) {
-      alert('Preencha todos os campos');
-      return;
-    }
+  if (
+    !form.titulo ||
+    !form.descricao ||
+    !form.data ||
+    !form.link ||
+    !form.parceiros
+  ) {
+    alert('Preencha todos os campos');
+    return;
+  }
 
-    // Formatar data para o backend (LocalDate espera 'YYYY-MM-DD')
-    const eventoParaEnviar = {
-      ...form,
-      data: form.data, // já é string 'YYYY-MM-DD' pelo input date
-    };
-
-    try {
-      const response = await axios.post(`${API_BASE_URL}/cadastrar`, eventoParaEnviar);
-      setEventos([response.data, ...eventos]);
-      setForm({
-        titulo: '',
-        descricao: '',
-        data: '',
-        link: '',
-        parceiros: '',
-      });
-    } catch (error) {
-      console.error('Erro ao adicionar evento:', error);
-      alert('Erro ao adicionar evento');
-    }
+  const eventoParaEnviar = {
+    ...form,
+    data: form.data,
   };
+
+  try {
+    await axios.post(`${API_BASE_URL}/cadastrar`, eventoParaEnviar);
+
+    // Limpa o formulário
+    setForm({
+      titulo: '',
+      descricao: '',
+      data: '',
+      link: '',
+      parceiros: '',
+    });
+
+    // Redireciona para a página de sucesso
+    navigate('/sucesso');
+  } catch (error) {
+    console.error('Erro ao adicionar evento:', error);
+    alert('Erro ao adicionar evento');
+  }
+};
 
   // Deletar evento
   const handleDelete = async (id) => {

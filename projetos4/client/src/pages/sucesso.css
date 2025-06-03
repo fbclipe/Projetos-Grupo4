@@ -1,0 +1,57 @@
+.sucesso-container {
+  position: relative;
+  padding: 80px 20px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  overflow: hidden; /* evita que a imagem ultrapasse */
+  z-index: 1;
+}
+
+.sucesso-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(brasfi-02.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.05; /* nível de transparência da marca d'água */
+  z-index: 0;
+}
+
+.sucesso-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sucesso-container h1 {
+  color: #2f4f2f;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.sucesso-container a {
+  font-size: 16px;
+  color: #2f4f2f;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 16px;
+  border: 2px solid #2f4f2f;
+  border-radius: 6px;
+  transition: background-color 0.3s, color 0.3s;
+  display: inline-block;
+  width: auto;
+}
+
+.sucesso-container a:hover {
+  background-color: #2f4f2f;
+  color: white;
+}
