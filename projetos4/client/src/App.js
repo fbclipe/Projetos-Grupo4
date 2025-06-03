@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import SobrePage from './pages/SobrePage';
 import ServicosPage from './pages/ServicosPage';
 import ContribuintesPage from './pages/ContribuintesPage';
 import EventosPage from './pages/EventosPage';
@@ -26,8 +25,7 @@ function App() {
           />
           <ul className="nav-list">
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/sobre">Sobre</Link></li>
-            <li><Link to="/quemsomos">Cadastro de interessado</Link></li>
+            <li><Link to="/quemsomos">Quem somos</Link></li>
             <li><Link to="/servicos">Serviços</Link></li>
             <li><Link to="/contribuintes">Contribuintes</Link></li>
             <li><Link to="/eventos">Eventos</Link></li>
@@ -41,7 +39,6 @@ function App() {
       <main className="main-content">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/sobre" element={<SobrePage />} />
           <Route path="/quemsomos" element={<QuemSomosPage />} />
           <Route path="/servicos" element={<ServicosPage />} />
           <Route path="/contribuintes" element={<ContribuintesPage />} />

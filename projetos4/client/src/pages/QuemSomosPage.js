@@ -80,7 +80,7 @@ const QuemSomosPage = () => {
 
   return (
     <div className="about-page" style={{ padding: '20px' }}>
-      <h1>Cadastro de interessado</h1>
+      <h1>Quem somos</h1>
 
       <form
         className="contato-form"
