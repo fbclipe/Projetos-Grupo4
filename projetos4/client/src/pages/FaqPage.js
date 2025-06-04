@@ -1,116 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { getPerguntas, getRespostas, criarPergunta, criarResposta } from "../services/faqService";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export default function FaqPage() {
-  const [perguntas, setPerguntas] = useState([]);
-  const [respostas, setRespostas] = useState([]);
-  const [perguntaSelecionada, setPerguntaSelecionada] = useState(null);
+const API_BASE_URL = 'http://localhost:8080/faqs';
 
-  const [novaPergunta, setNovaPergunta] = useState("");
-  const [novaResposta, setNovaResposta] = useState("");
+const FaqPage = () => {
+  const [faqs, setFaqs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Buscar FAQs do backend
+  const getFaqs = async () => {
+    try {
+      const response = await axios.get(`${API_BASE_URL}/perguntas`);
+      const perguntas = response.data;
+
+      // Para cada pergunta, buscar suas respostas
+      const faqsComRespostas = await Promise.all(
+        perguntas.map(async (pergunta) => {
+          const res = await axios.get(`${API_BASE_URL}/respostas/${pergunta.id}`);
+          return { ...pergunta, respostas: res.data };
+        })
+      );
+
+      setFaqs(faqsComRespostas);
+    } catch (error) {
+      console.error('Erro ao buscar FAQs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    carregarPerguntas();
+    getFaqs();
   }, []);
 
-  async function carregarPerguntas() {
-    try {
-      const dados = await getPerguntas();
-      setPerguntas(dados);
-      setRespostas([]);
-      setPerguntaSelecionada(null);
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-  async function mostrarRespostas(id) {
-    try {
-      const dados = await getRespostas(id);
-      setRespostas(dados);
-      setPerguntaSelecionada(id);
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-  async function handleCriarPergunta(e) {
-    e.preventDefault();
-    if (!novaPergunta.trim()) return alert("Digite uma pergunta");
-    try {
-      await criarPergunta(novaPergunta);
-      setNovaPergunta("");
-      carregarPerguntas();
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-  async function handleCriarResposta(e) {
-    e.preventDefault();
-    if (!novaResposta.trim()) return alert("Digite uma resposta");
-    if (!perguntaSelecionada) return alert("Selecione uma pergunta para responder");
-    try {
-      await criarResposta(perguntaSelecionada, novaResposta);
-      setNovaResposta("");
-      mostrarRespostas(perguntaSelecionada);
-    } catch (error) {
-      alert(error.message);
-    }
-  }
+  if (loading) return <div>Carregando FAQs...</div>;
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>FAQ</h1>
+    <div className="faq-page">
+      <h1>Perguntas Frequentes</h1>
 
-      <form onSubmit={handleCriarPergunta} style={{ marginBottom: 20 }}>
-        <input
-          type="text"
-          placeholder="Digite nova pergunta"
-          value={novaPergunta}
-          onChange={(e) => setNovaPergunta(e.target.value)}
-          style={{ width: "70%", marginRight: 8 }}
-        />
-        <button type="submit">Criar Pergunta</button>
-      </form>
+      <ul className="page-list">
+        {faqs.length === 0 && <li>Nenhuma FAQ cadastrada.</li>}
 
-      <h2>Perguntas</h2>
-      <ul>
-        {perguntas.map((p) => (
-          <li key={p.id} style={{ marginBottom: 10 }}>
-            <button onClick={() => mostrarRespostas(p.id)} style={{ marginRight: 8 }}>
-              Ver respostas
-            </button>
-            {p.pergunta}
+        {faqs.map((faq) => (
+          <li key={faq.id} style={{ marginBottom: '20px' }}>
+            <strong>Pergunta:</strong> {faq.pergunta}
+            <br />
+            {faq.respostas.length === 0 ? (
+              <em>Sem respostas ainda.</em>
+            ) : (
+              <>
+                <strong>Respostas:</strong>
+                <ul>
+                  {faq.respostas.map((r) => (
+                    <li key={r.id}>{r.resposta}</li>
+                  ))}
+                </ul>
+              </>
+            )}
           </li>
         ))}
       </ul>
-
-      {perguntaSelecionada && (
-        <>
-          <h3>Respostas para pergunta ID {perguntaSelecionada}</h3>
-          <ul>
-            {respostas.length > 0 ? (
-              respostas.map((r) => (
-                <li key={r.id}>{r.resposta || "(Resposta vazia)"}</li>
-              ))
-            ) : (
-              <li>Sem respostas ainda</li>
-            )}
-          </ul>
-
-          <form onSubmit={handleCriarResposta} style={{ marginTop: 20 }}>
-            <input
-              type="text"
-              placeholder="Digite nova resposta"
-              value={novaResposta}
-              onChange={(e) => setNovaResposta(e.target.value)}
-              style={{ width: "70%", marginRight: 8 }}
-            />
-            <button type="submit">Criar Resposta</button>
-          </form>
-        </>
-      )}
     </div>
   );
-}
+};
+
+export default FaqPage;

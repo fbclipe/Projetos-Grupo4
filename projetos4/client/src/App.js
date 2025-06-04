@@ -12,6 +12,7 @@ import QuemSomosPage from './pages/QuemSomosPage';
 import CadastroSucessoPage from './pages/CadastroSucessoPage';
 import brasfiLogo from './pages/brasfi-02.png';
 import HomeadmPage from './pages/HomeadmPage';
+import FaqAdicionarPage from './pages/FaqadicionarPage';
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/sucesso" element={<CadastroSucessoPage />} />
           <Route path="/homeadm" element={<HomeadmPage />}/>
+          <Route path="/faqs" element={<FaqAdicionarPage />} />
         </Routes>
       </main>
       <footer className="footer">
