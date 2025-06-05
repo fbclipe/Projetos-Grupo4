@@ -254,7 +254,6 @@ const UserLoginPage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.6 }}
         >
-          <p>Não tem uma conta? <a href="/cadastro" style={{ color: 'var(--color-primary)' }}>Cadastre-se</a></p>
         </motion.div>
       </motion.div>
     </div>

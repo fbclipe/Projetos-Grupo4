@@ -17,7 +17,6 @@ import GerenciarEventosPage from './pages/GerenciarEventosPage';
 import GerenciarNoticiasPage from './pages/GerenciarNoticiasPage';
 import GerenciarQuemSomosPage from './pages/GerenciarQuemSomosPage';
 import GerenciarContribuintesPage from './pages/GerenciarContribuintesPage';
-import UserRegisterPage from './pages/UserRegisterPage'
 import UserLoginPage from './pages/UserLoginPage';
 
 function App() {
@@ -38,7 +37,6 @@ function App() {
           <Route path="/noticias" element={<NoticiasPage />} />
           <Route path="/faq" element={<FaqPage />} />
           <Route path="/sucesso" element={<CadastroSucessoPage />} />
-          <Route path="/cadastro" element={<UserRegisterPage />} />
           <Route path="/login" element={<UserLoginPage />} />
           </Route>
 

@@ -17,7 +17,6 @@ const AdminLayout = () => {
             {/* LINKS ESPECÍFICOS DA ADMINISTRAÇÃO */}
             <li><Link to="/homeadm" className="admin-nav-link">Dashboard Admin</Link></li>
             <li><Link to="/homeadm/faqs" className="admin-nav-link">Gerenciar FAQs</Link></li>
-            <li><Link to="/homeadm/usuarios" className="admin-nav-link">Gerenciar Usuários</Link></li>
             <li><Link to="/homeadm/noticias" className="admin-nav-link">Gerenciar Notícias</Link></li>
             <li><Link to="/homeadm/eventos" className="admin-nav-link">Gerenciar Eventos</Link></li>
             <li><Link to="/homeadm/quemsomos" className="admin-nav-link">Gerenciar Quem Somos</Link></li>
