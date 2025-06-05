@@ -20,6 +20,8 @@ const AdminLayout = () => {
             <li><Link to="/homeadm/usuarios" className="admin-nav-link">Gerenciar Usuários</Link></li>
             <li><Link to="/homeadm/noticias" className="admin-nav-link">Gerenciar Notícias</Link></li>
             <li><Link to="/homeadm/eventos" className="admin-nav-link">Gerenciar Eventos</Link></li>
+            <li><Link to="/homeadm/quemsomos" className="admin-nav-link">Gerenciar Quem Somos</Link></li>
+            <li><Link to="/homeadm/contribuintes" className="admin-nav-link">Gerenciar Contribuintes</Link></li>
             {/* Adicione mais links de navegação para a área admin aqui */}
             
             {/* Link para voltar ao site principal - importante! */}

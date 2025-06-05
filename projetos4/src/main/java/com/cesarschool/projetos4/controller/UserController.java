@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import com.cesarschool.projetos4.entity.User;
 import com.cesarschool.projetos4.service.UserService;
 @RestController
-@RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -32,4 +33,4 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-}
+} 

@@ -1,3 +1,4 @@
+// src/pages/FaqPage.jsx (Public-facing)
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -14,6 +15,7 @@ const FaqPage = () => {
       const perguntas = response.data;
 
       // Para cada pergunta, buscar suas respostas
+      // Using Promise.all to fetch all answers concurrently
       const faqsComRespostas = await Promise.all(
         perguntas.map(async (pergunta) => {
           const res = await axios.get(`${API_BASE_URL}/respostas/${pergunta.id}`);
@@ -24,6 +26,7 @@ const FaqPage = () => {
       setFaqs(faqsComRespostas);
     } catch (error) {
       console.error('Erro ao buscar FAQs:', error);
+      // You might want to display an error message to the user here
     } finally {
       setLoading(false);
     }
@@ -39,28 +42,26 @@ const FaqPage = () => {
     <div className="faq-page">
       <h1>Perguntas Frequentes</h1>
 
-      <ul className="page-list">
-        {faqs.length === 0 && <li>Nenhuma FAQ cadastrada.</li>}
-
-        {faqs.map((faq) => (
-          <li key={faq.id} style={{ marginBottom: '20px' }}>
-            <strong>Pergunta:</strong> {faq.pergunta}
-            <br />
-            {faq.respostas.length === 0 ? (
-              <em>Sem respostas ainda.</em>
-            ) : (
-              <>
-                <strong>Respostas:</strong>
-                <ul>
+      {faqs.length === 0 ? (
+        <p>Nenhuma FAQ cadastrada no momento.</p>
+      ) : (
+        <ul className="page-list">
+          {faqs.map((faq) => (
+            <li key={faq.id} style={{ marginBottom: '20px', padding: '15px', border: '1px solid #eee', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+              <h3>{faq.pergunta}</h3>
+              {faq.respostas.length === 0 ? (
+                <p><em>Sem respostas ainda.</em></p>
+              ) : (
+                <ul style={{ listStyleType: 'disc', marginLeft: '20px' }}>
                   {faq.respostas.map((r) => (
-                    <li key={r.id}>{r.resposta}</li>
+                    <li key={r.id} style={{ marginBottom: '5px' }}>{r.resposta}</li>
                   ))}
                 </ul>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-// src/pages/GerenciarNoticiasPage.jsx (Admin-facing)
+// src/pages/GerenciarNoticiasPage.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,15 +9,12 @@ const GerenciarNoticiasPage = () => {
   const [noticias, setNoticias] = useState([]);
   const [loading, setLoading] = useState(true);
   const [form, setForm] = useState({
-    id: null, // Add ID for editing
     titulo: '',
     conteudo: '',
   });
-  const [isEditing, setIsEditing] = useState(false);
 
-  const navigate = useNavigate(); // For redirection
+  const navigate = useNavigate();
 
-  // Busca notícias do backend
   const getNoticias = async () => {
     try {
       const response = await axios.get(`${API_BASE_URL}/findall`);
@@ -33,12 +30,10 @@ const GerenciarNoticiasPage = () => {
     getNoticias();
   }, []);
 
-  // Manipula mudança do formulário
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Envia a notícia para o backend (adicionar ou atualizar)
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.titulo || !form.conteudo) {
@@ -52,42 +47,27 @@ const GerenciarNoticiasPage = () => {
     };
 
     try {
-      if (isEditing && form.id) {
-        // Atualizar notícia existente
-        await axios.put(`${API_BASE_URL}/atualizar/${form.id}`, noticiaData); // Assuming an 'atualizar' endpoint for PUT
-        alert('Notícia atualizada com sucesso!');
-      } else {
-        // Adicionar nova notícia
-        await axios.post(API_BASE_URL, noticiaData);
-        alert('Notícia adicionada com sucesso!');
-        navigate('/sucesso'); // Or refresh the news list: getNoticias();
-      }
+      await axios.post(API_BASE_URL, noticiaData);
+      alert('Notícia adicionada com sucesso!');
+      
+      // *** MUDANÇA AQUI: REDIRECIONAR PARA A PÁGINA DE SUCESSO ***
+      navigate('/sucesso'); 
 
-      // Limpa o formulário e reseta o estado
+      // As linhas abaixo (limpar form e getNoticias) NÃO SÃO MAIS NECESSÁRIAS
+      // se você está redirecionando, pois a página será recarregada.
+      /*
       setForm({
-        id: null,
         titulo: '',
         conteudo: '',
       });
-      setIsEditing(false);
-      getNoticias(); // Atualiza a lista para mostrar as mudanças
+      getNoticias();
+      */
     } catch (error) {
       console.error('Erro ao salvar notícia:', error);
       alert('Erro ao salvar notícia. Verifique o console para mais detalhes.');
     }
   };
 
-  // Preenche o formulário para edição
-  const handleEdit = (noticia) => {
-    setForm({
-      id: noticia.id,
-      titulo: noticia.titulo,
-      conteudo: noticia.conteudo,
-    });
-    setIsEditing(true);
-  };
-
-  // Deleta notícia
   const handleDelete = async (id) => {
     if (!window.confirm('Tem certeza que deseja excluir essa notícia? Esta ação é irreversível!')) return;
 
@@ -95,11 +75,7 @@ const GerenciarNoticiasPage = () => {
       await axios.delete(`${API_BASE_URL}/${id}`);
       setNoticias(noticias.filter((n) => n.id !== id));
       alert('Notícia excluída com sucesso!');
-      // If the deleted news was being edited, clear the form
-      if (form.id === id) {
-        setForm({ id: null, titulo: '', conteudo: '' });
-        setIsEditing(false);
-      }
+      setForm({ titulo: '', conteudo: '' }); // Limpa o formulário apenas se necessário
     } catch (error) {
       console.error('Erro ao deletar notícia:', error);
       alert('Erro ao deletar notícia.');
@@ -114,7 +90,7 @@ const GerenciarNoticiasPage = () => {
     <div className="admin-page">
       <h1>Gerenciar Notícias</h1>
 
-      <h2>{isEditing ? 'Editar Notícia' : 'Adicionar Nova Notícia'}</h2>
+      <h2>Adicionar Nova Notícia</h2>
       <form className="admin-form" onSubmit={handleSubmit} style={formStyles.form}>
         <label htmlFor="titulo" style={formStyles.label}>Título:</label>
         <input
@@ -137,16 +113,8 @@ const GerenciarNoticiasPage = () => {
         />
 
         <button type="submit" style={formStyles.submitButton}>
-          {isEditing ? 'Atualizar Notícia' : 'Adicionar Notícia'}
+          Adicionar Notícia
         </button>
-        {isEditing && (
-          <button type="button" onClick={() => {
-            setForm({ id: null, titulo: '', conteudo: '' });
-            setIsEditing(false);
-          }} style={formStyles.cancelButton}>
-            Cancelar Edição
-          </button>
-        )}
       </form>
 
       <h2 style={{ marginTop: '40px' }}>Notícias Cadastradas</h2>
@@ -163,12 +131,6 @@ const GerenciarNoticiasPage = () => {
               </div>
               <div style={listStyles.buttonContainer}>
                 <button
-                  style={listStyles.editButton}
-                  onClick={() => handleEdit(n)}
-                >
-                  Editar
-                </button>
-                <button
                   style={listStyles.deleteButton}
                   onClick={() => handleDelete(n.id)}
                 >
@@ -183,14 +145,14 @@ const GerenciarNoticiasPage = () => {
   );
 };
 
-// Reusing styles from GerenciarEventosPage for consistency
 const formStyles = {
   form: {
     display: 'flex',
     flexDirection: 'column',
     gap: '10px',
     maxWidth: '600px',
-    margin: '20px 0',
+    // MUDANÇA AQUI: Centralizar o formulário horizontalmente
+    margin: '20px auto', // '20px' para topo/base, 'auto' para esquerda/direita para centralizar
     padding: '20px',
     border: '1px solid #ccc',
     borderRadius: '8px',

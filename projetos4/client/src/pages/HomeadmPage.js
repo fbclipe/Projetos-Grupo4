@@ -34,15 +34,23 @@ const HomeadmPage = () => (
         <p style={adminHomeStyles.cardDescription}>Administre contas de usuário e permissões.</p>
       </li>
 
+      {/* --- NOVOS ITENS ADICIONADOS AQUI --- */}
+      <li style={adminHomeStyles.featureListItem}>
+        <h2 style={adminHomeStyles.cardTitle}>Gerenciar "Quem Somos"</h2>
+        <p style={adminHomeStyles.cardDescription}>Gerencie os membros e a descrição da equipe do site.</p>
+      </li>
+
+      <li style={adminHomeStyles.featureListItem}>
+        <h2 style={adminHomeStyles.cardTitle}>Gerenciar Contribuintes</h2>
+        <p style={adminHomeStyles.cardDescription}>Visualize e exclua registros de contribuintes.</p>
+      </li>
+       {/* --- FIM DOS NOVOS ITENS --- */}
+
       {/* Adicione mais itens de lista para outras funcionalidades administrativas aqui */}
       {/*
       <li style={adminHomeStyles.featureListItem}>
         <h2 style={adminHomeStyles.cardTitle}>Gerenciar Depoimentos</h2>
         <p style={adminHomeStyles.cardDescription}>Aprove e organize depoimentos de clientes.</p>
-      </li>
-      <li style={adminHomeStyles.featureListItem}>
-        <h2 style={adminHomeStyles.cardTitle}>Gerenciar Contribuintes</h2>
-        <p style={adminHomeStyles.cardDescription}>Visualize e gerencie dados de contribuintes.</p>
       </li>
       */}
     </ul>
@@ -89,8 +97,7 @@ const adminHomeStyles = {
   },
   cardTitle: {
     fontSize: '1.5em',
-    // A cor foi alterada de '#007bff' para 'black' aqui
-    color: 'black', 
+    color: 'black',
     marginBottom: '10px',
   },
   cardDescription: {

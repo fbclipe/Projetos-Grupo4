@@ -20,9 +20,9 @@ const MainLayout = () => {
             <li><Link to="/contribuintes">Contribuintes</Link></li>
             <li><Link to="/eventos">Eventos</Link></li>
             <li><Link to="/depoimentos">Depoimentos</Link></li>
-            <li><Link to="/contato">Contato</Link></li>
             <li><Link to="/noticias">Notícias</Link></li>
             <li><Link to="/faq">FAQ</Link></li>
+            <li><Link to="/cadastro">Cadastro</Link></li>
             {/* Este é o botão/link para a área administrativa */}
             <li><Link to="/homeadm" className="admin-button-link">Painel Admin</Link></li>
           </ul>

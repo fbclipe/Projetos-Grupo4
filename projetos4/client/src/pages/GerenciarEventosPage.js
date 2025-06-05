@@ -1,4 +1,4 @@
-// src/pages/GerenciarEventosPage.jsx (This is the admin page for managing events)
+// src/pages/GerenciarEventosPage.jsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Needed for redirection after adding
@@ -248,7 +248,8 @@ const formStyles = {
     flexDirection: 'column',
     gap: '10px',
     maxWidth: '600px',
-    margin: '20px 0',
+    // CHANGE HERE: Centralize the form horizontally
+    margin: '20px auto', // '20px' for top/bottom, 'auto' for left/right to center
     padding: '20px',
     border: '1px solid #ccc',
     borderRadius: '8px',
